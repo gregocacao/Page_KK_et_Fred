@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Secrète</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .password-section {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .secret-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            margin-top: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .lock-icon {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lock-icon">🔒</div>
+        <h1>Accès Sécurisé</h1>
+        
+        <div class="password-section">
+            <label for="password">Entrez le mot de passe :</label>
+            <input type="password" id="password" placeholder="Mot de passe secret">
+            <br><br>
+            <button onclick="checkPassword()">Vérifier</button>
+        </div>
+        
+        <div id="secretMessage" class="secret-message">
+            <h2>🎉 Félicitations !</h2>
+            <p>Vous avez trouvé le message secret !</p>
+            <p><strong>Le trésor caché :</strong> "La connaissance est le plus grand des pouvoirs. Continuez à apprendre et à explorer !"</p>
+        </div>
+        
+        <div id="errorMessage" class="error-message">
+            ❌ Mot de passe incorrect. Essayez encore !
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = "secret123";
+        
+        function checkPassword() {
+            const passwordInput = document.getElementById('password');
+            const secretMessage = document.getElementById('secretMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Masquer les messages précédents
+            secretMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            if (passwordInput.value === correctPassword) {
+                secretMessage.style.display = 'block';
+                passwordInput.value = ''; // Vider le champ
+            } else {
+                errorMessage.style.display = 'block';
+                passwordInput.value = ''; // Vider le champ
+            }
+        }
+        
+        // Permettre la validation avec la touche Entrée
+        document.getElementById('password').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
+
