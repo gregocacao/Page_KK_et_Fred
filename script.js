@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const decryptButton = document.getElementById('decrypt-button');
     const cipherFeedback = document.getElementById('cipher-feedback');
 
-    // Message décrypté de 23 lettres SANS ESPACES
+    // Message décrypté de 24 lettres SANS ESPACES
     // "LA CONNAISSANCE EST POUVOIR" devient "LACONNAISSANCEESTPOUVOIR"
-    const correctCipherAnswer = "LACONNAISSANCEESTPOUVOIR"; // 23 caractères
-    const numCipherLetters = 23; // <-- CORRIGÉ À 23
+    const correctCipherAnswer = "LACONNAISSANCEESTPOUVOIR"; // 24 caractères
+    const numCipherLetters = 24; // <-- CORRIGÉ À 24
 
-    // Fonction pour générer les 23 champs de saisie
+    // Fonction pour générer les 24 champs de saisie
     function generateCipherInputs() {
         cipherInputGrid.innerHTML = '';
         for (let i = 0; i < numCipherLetters; i++) {
