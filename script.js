@@ -54,14 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (userAnswer === correctCipherAnswer) {
-            cipherFeedback.textContent = "Magnifique ! Vous avez déchiffré le message !";
+            cipherFeedback.textContent = "Magnifique ! Vous avez déchiffré le message ! Vous avancez à la prochaine étape. Bisous, Sonia et Grégory";
             cipherFeedback.className = "feedback success";
             setTimeout(() => {
                 cipherContainer.classList.add('hidden');
                 marcoPage.classList.remove('hidden');
             }, 1500);
         } else {
-            cipherFeedback.textContent = "Ce n'est pas tout à fait ça. Continuez d'essayer ! Vous avancez à la prochaine étape. Bisous, Sonia et Grégory";
+            cipherFeedback.textContent = "Ce n'est pas tout à fait ça. Continuez d'essayer ! ";
             cipherFeedback.className = "feedback error";
         }
     });
