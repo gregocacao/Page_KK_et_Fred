@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 marcoPage.classList.remove('hidden');
             }, 1500);
         } else {
-            cipherFeedback.textContent = "Ce n'est pas tout à fait ça. Continuez d'essayer !";
+            cipherFeedback.textContent = "Ce n'est pas tout à fait ça. Continuez d'essayer ! Vous avancez à la prochaine étape. Bisous, Sonia et Grégory";
             cipherFeedback.className = "feedback error";
         }
     });
