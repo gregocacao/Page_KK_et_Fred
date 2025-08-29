@@ -9,23 +9,20 @@
 <body>
     <div class="container" id="cipher-container">
         <h1>Décodez le Message !</h1>
-        <p>Un nouveau défi vous attend ! Observez attentivement cette image. Elle contient un message crypté de 22 lettres. À vous de le déchiffrer !</p>
+        <p>Un nouveau défi vous attend ! Observez attentivement cette image. Elle contient un message crypté. Entrez les **23 lettres décodées** ci-dessous (ignorez les espaces).</p>
         <div class="cipher-challenge">
-            <img src="cryptogramme.png" alt="Message Crypté de 22 lettres" class="cryptogram-image">
+            <img src="cryptogramme.png" alt="Message Crypté" class="cryptogram-image">
             <div class="input-grid" id="cipher-input-grid">
-                <!-- Les 22 cases de saisie seront générées ici par JavaScript -->
+                <!-- Les 23 cases de saisie seront générées ici par JavaScript -->
             </div>
             <button id="decrypt-button">Déchiffrer</button>
             <p id="cipher-feedback" class="feedback"></p>
         </div>
     </div>
 
-    <div class="container hidden" id="final-page">
-        <h1>Bravo ! Vous avez tout résolu !</h1>
-        <p>Votre persévérance a porté ses fruits. Voici le message final que vous avez réussi à décrypter :</p>
-        <div class="secret-text">
-            <p>"La connaissance est le pouvoir, mais la sagesse est de savoir quand et comment l'utiliser."</p>
-        </div>
+    <div class="container hidden" id="marco-page">
+        <h1>Message de Marco</h1>
+        <p>Ce message vous est dédié.</p>
     </div>
 
     <script src="script.js"></script>
