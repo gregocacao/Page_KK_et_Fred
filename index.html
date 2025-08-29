@@ -30,11 +30,23 @@
     </div>
 
     <div class="container hidden" id="second-page">
-        <h1>Félicitations !</h1>
-        <p>Vous avez résolu le rébus ! Voici votre texte secret :</p>
+        <h1>Décodez le Message !</h1>
+        <p>Un nouveau défi vous attend ! Observez attentivement cette image. Elle contient un message crypté de 22 lettres. À vous de le déchiffrer !</p>
+        <div class="cipher-challenge">
+            <img src="cryptogramme.png" alt="Message Crypté de 22 lettres" class="cryptogram-image">
+            <div class="input-grid" id="cipher-input-grid">
+                <!-- Les 22 cases de saisie seront générées ici par JavaScript -->
+            </div>
+            <button id="decrypt-button">Déchiffrer</button>
+            <p id="cipher-feedback" class="feedback"></p>
+        </div>
+    </div>
+
+    <div class="container hidden" id="final-page">
+        <h1>Bravo ! Vous avez tout résolu !</h1>
+        <p>Votre persévérance a porté ses fruits. Voici le message final que vous avez réussi à décrypter :</p>
         <div class="secret-text">
-            <p>Le voyage de mille lieues commence par un seul pas.</p>
-            <p>C'est une citation de Lao Tseu qui signifie qu'il faut commencer pour atteindre n'importe quel objectif, même le plus ambitieux.</p>
+            <p>"La connaissance est le pouvoir, mais la sagesse est de savoir quand et comment l'utiliser."</p>
         </div>
     </div>
 
