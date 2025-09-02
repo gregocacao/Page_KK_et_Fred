@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         app.innerHTML = `
             <div class="container" id="home-page">
                 <img src="fouras.jpg" alt="Fouras" class="home-image">
-                <p>Bonjour Carole et Fred. Sonia et Grégory ont deux nouvelles énigme pour vous !n nouveau défi vous attend !  <strong>${numCipherLetters} lettres décodées</strong> ci-dessous (ignorez les espaces).</p>
+                <p>Bonjour Carole et Fred. Sonia et Grégory ont deux nouvelles énigme pour vous !n nouveau défi vous attend !</p>
                 <button id="continue-button">Poursuivre</button>
             </div>
         `;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         app.innerHTML = `
             <div class="container" id="cipher-container">
                 <h1>Carole et Fred, décodez ce Message !</h1>
-                <p>Observez attentivement cette image. Elle contient un message crypté. Entrez les <strong>${numCipherLetters} lettres décodées</strong> ci-dessous (ignorez les espaces).</p>
+                <p>Observez attentivement cette image. Elle contient un message crypté. Entrez les <strong>${numCipherLetters} lettres décodées</strong> ci-dessous.</p>
                 <div class="cipher-challenge">
                     <img src="cryptogramme.png" alt="Message Crypté" class="cryptogram-image">
                     <div class="input-grid" id="cipher-input-grid">
