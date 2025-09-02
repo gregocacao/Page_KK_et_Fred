@@ -3,13 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const correctCipherAnswer = "CAROLEETFREDFOREVER";
     const numCipherLetters = 19;
-    // Définition des indices pour les espacements de l'énigme 1 (CAROLE ET FRED FOREVER)
-    const cipherSpaceIndices = [6, 9, 14]; // Après les lettres 'CAROLE', 'ET', 'FRED'
 
-    const correctRebusAnswer = "MARCANTOINEAMIEL"; // Correct answer for the rebus
-    const numRebusLetters = 16; // Number of letters in the rebus answer
-    // Définition des indices pour les espacements de l'énigme 2 (MARC ANTOINE AMIEL)
-    const rebusSpaceIndices = [4, 11]; // Après les lettres 'MARC', 'ANTOINE'
+    const correctRebusAnswer = "MARCANTOINEAMIEL";
+    const numRebusLetters = 16;
 
     // Function to render the Home Page
     function renderHomePage() {
@@ -45,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const decryptButton = document.getElementById('decrypt-button');
         const cipherFeedback = document.getElementById('cipher-feedback');
 
-        generateInputGrid(cipherInputGrid, numCipherLetters, 'cipher-letter-input', cipherSpaceIndices); // Pass space indices
+        generateInputGrid(cipherInputGrid, numCipherLetters, 'cipher-letter-input'); // Pas de spaceIndices ici
 
         decryptButton.addEventListener('click', () => {
             let userAnswer = '';
@@ -57,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (userAnswer === correctCipherAnswer) {
                 cipherFeedback.textContent = "Magnifique ! Vous avez déchiffré le message ! Vous avancez à la prochaine étape. Bisous, Sonia et Grégory";
                 cipherFeedback.className = "feedback success";
-                setTimeout(renderRebusPage, 1500); // Go to rebus page next
+                setTimeout(renderRebusPage, 1500);
             } else {
                 cipherFeedback.textContent = "Ce n'est pas tout à fait ça. Continuez d'essayer ! ";
                 cipherFeedback.className = "feedback error";
@@ -86,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const solveRebusButton = document.getElementById('solve-rebus-button');
         const rebusFeedback = document.getElementById('rebus-feedback');
 
-        generateInputGrid(rebusInputGrid, numRebusLetters, 'rebus-letter-input', rebusSpaceIndices); // Pass space indices
+        generateInputGrid(rebusInputGrid, numRebusLetters, 'rebus-letter-input'); // Pas de spaceIndices ici
 
         solveRebusButton.addEventListener('click', () => {
             let userAnswer = '';
@@ -98,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (userAnswer === correctRebusAnswer) {
                 rebusFeedback.textContent = "Fantastique ! Vous avez résolu le rébus ! Passez à la dernière étape. Bisous, Sonia et Grégory.";
                 rebusFeedback.className = "feedback success";
-                setTimeout(renderFinalPage, 1500); // Go to final page
+                setTimeout(renderFinalPage, 1500);
             } else {
                 rebusFeedback.textContent = "Presque ! Réfléchissez bien aux images. ";
                 rebusFeedback.className = "feedback error";
@@ -106,21 +102,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Generic function to generate input fields
-    function generateInputGrid(gridElement, numLetters, inputClass, spaceIndices = []) {
+    // Generic function to generate input fields (simplifiée)
+    function generateInputGrid(gridElement, numLetters, inputClass) {
         gridElement.innerHTML = '';
         for (let i = 0; i < numLetters; i++) {
             const input = document.createElement('input');
             input.type = 'text';
             input.maxLength = 1;
-            input.classList.add(inputClass); // Use dynamic class
+            input.classList.add(inputClass);
             input.dataset.index = i;
-
-            // Add margin if the current index is in the spaceIndices array
-            if (spaceIndices.includes(i + 1)) { // i+1 because spaceIndices are 1-based (after X letters)
-                input.style.marginRight = '15px';
-            }
-
             gridElement.appendChild(input);
 
             input.addEventListener('input', (event) => {
@@ -142,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-        // Focus the first input after generation
         document.querySelector(`.${inputClass}[data-index="0"]`).focus();
     }
 
