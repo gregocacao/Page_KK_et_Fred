@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCipherPage() {
         app.innerHTML = `
             <div class="container" id="cipher-container">
-                <h1>Carole et Fred, décodez ce Message !</h1>
+                <h1>Enigme n°1: Décodez ce Message !</h1>
                 <p>Observez attentivement cette image. Elle contient un message crypté. Entrez les <strong>${numCipherLetters} lettres décodées</strong> ci-dessous.</p>
                 <div class="cipher-challenge">
                     <img src="cryptogramme.png" alt="Message Crypté" class="cryptogram-image">
