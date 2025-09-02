@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Message décrypté de 24 lettres SANS ESPACES
     // "LA CONNAISSANCE EST POUVOIR" devient "LACONNAISSANCEESTPOUVOIR"
-    const correctCipherAnswer = "LACONNAISSANCEESTPOUVOIR"; // 24 caractères
-    const numCipherLetters = 24; // <-- CORRIGÉ À 24
+    const correctCipherAnswer = "CAROLEETFREDFOREVER"; 
+    const numCipherLetters = 19; 
 
     // Fonction pour générer les 24 champs de saisie
     function generateCipherInputs() {
