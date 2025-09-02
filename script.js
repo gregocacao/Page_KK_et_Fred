@@ -144,8 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderFinalPage() {
         app.innerHTML = `
             <div class="container" id="final-container">
-                <h1>Félicitations !</h1>
-                <p>Vous avez résolu toutes les énigmes. Voici votre récompense :</p>
+                <h1>Bravo, voici le parchemin !</h1>
                 <img src="parchemin.jpg" alt="Parchemin final" class="cryptogram-image">
             </div>
         `;
