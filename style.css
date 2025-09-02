@@ -101,17 +101,14 @@ button:hover {
 }
 
 /* Ajout d'un espacement plus grand pour les "mots" */
-/* "LA" (2 lettres) + espace */
-.input-grid input:nth-child(2) {
-    margin-right: 15px; /* Plus d'espace après la 2ème lettre (fin de "LA") */
+.input-grid input:nth-child(6) {
+    margin-right: 15px; 
 }
-/* "CONNAISSANCE" (12 lettres, donc la 14ème input) + espace */
-.input-grid input:nth-child(14) {
-    margin-right: 15px; /* Plus d'espace après la 14ème lettre (fin de "CONNAISSANCE") */
+.input-grid input:nth-child(8) {
+    margin-right: 15px; 
 }
-/* "EST" (3 lettres, donc la 17ème input) + espace */
-.input-grid input:nth-child(17) {
-    margin-right: 15px; /* Plus d'espace après la 17ème lettre (fin de "EST") */
+.input-grid input:nth-child(12) {
+    margin-right: 15px; 
 }
 
 
