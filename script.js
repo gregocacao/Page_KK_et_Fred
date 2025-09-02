@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         app.innerHTML = `
             <div class="container" id="home-page">
                 <img src="fouras.jpg" alt="Fouras" class="home-image">
-                <p>Bonjour Carole et Fred. Sonia et Grégory ont deux nouvelles énigme pour vous !</p>
-                <button id="continue-button">Enigme n°1</button>
+                <p>Bonjour Carole et Fred. Sonia et Grégory m'ont confié deux nouvelles énigme pour vous !</p>
+                <button id="continue-button">Poursuivre</button>
             </div>
         `;
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (userAnswer === correctCipherAnswer) {
-                cipherFeedback.textContent = "Magnifique ! Vous avez déchiffré le message ! Vous avancez à la prochaine étape. Bisous, Sonia et Grégory";
+                cipherFeedback.textContent = "Magnifique ! Vous avez déchiffré le message ! Vous êtes vraiment très fort !";
                 cipherFeedback.className = "feedback success";
                 setTimeout(renderRebusPage, 1500);
             } else {
@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderRebusPage() {
         app.innerHTML = `
             <div class="container" id="rebus-container">
-                <h1>Enigme n°2: Le Rébus de Marco !</h1>
-                <p>Marco a une nouvelle énigme pour vous. Démêlez ce rébus et trouvez le nom caché ! Entrez les <strong>${numRebusLetters} lettres</strong> ci-dessous.</p>
+                <h1>Enigme n°2: Le Rébus !</h1>
+                <p>Ce rébus vous permettra de découvrir qui est l'auteur de la chasse au trésor qui vous attends ! </p>
                 <div class="rebus-challenge">
                     <img src="rebus.png" alt="Rébus" class="cryptogram-image">
                     <div class="input-grid" id="rebus-input-grid">
@@ -136,11 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Function to render the Final Page
+        // Function to render the Final Page
     function renderFinalPage() {
         app.innerHTML = `
             <div class="container final-page" id="final-page">
-                <!-- Déplacez le contenu de style ici, ou idéalement dans un fichier CSS externe -->
                 <style>
                     /* Styles pour le corps de la page */
                     body {
@@ -149,12 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         align-items: center;
                         min-height: 100vh;
                         margin: 0;
-                        /* Fond simulant une table en bois sombre */
-                        background-color: #3d2b1f;
-                        background-image: linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1)), 
-                                          linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1));
-                        background-size: 60px 60px;
-                        background-position: 0 0, 30px 30px;
+                        /* MODIFICATION: Fond blanc pour la page finale */
+                        background-color: white; 
                         padding: 2rem;
                         box-sizing: border-box;
                         font-family: 'Helvetica Neue', sans-serif;
@@ -173,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         background: 
                             radial-gradient(circle at 15% 20%, rgba(181, 152, 100, 0.15) 0%, transparent 30%),
                             radial-gradient(circle at 85% 75%, rgba(181, 152, 100, 0.1) 0%, transparent 40%),
-                            #fdf5e6; /* Couleur de base du papier ancien */
+                            #fdf5e6; /* Couleur de base du papier ancien (qui est déjà quasi-blanc) */
 
                         /* Ombre portée plus réaliste pour un effet de relief */
                         box-shadow: 
@@ -221,12 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         text-align: center;
                         /* Ombre légère pour simuler l'encre */
                         text-shadow: 1px 1px 2px rgba(61, 43, 31, 0.2);
+                        /* MODIFICATION: Ajout de marge en haut pour le texte */
+                        padding-top: 2rem; 
                     }
                     
                     /* Préserve les sauts de ligne du texte original */
                     .main-text {
                         white-space: pre-line;
                         margin-bottom: 2rem;
+                        /* MODIFICATION: Texte en gras */
+                        font-weight: bold; 
                     }
 
                     /* Style pour la signature */
@@ -234,6 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         text-align: right;
                         margin-top: 2rem;
                         font-size: 1.8rem;
+                        /* MODIFICATION: Signature en gras */
+                        font-weight: bold; 
                     }
 
                     /* Sceau de cire */
@@ -278,6 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         .content {
                             font-size: 1.4rem;
+                             /* MODIFICATION: Ajustement pour petits écrans */
+                            padding-top: 1.5rem; 
                         }
                         .wax-seal {
                             width: 60px;
@@ -288,10 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 </style>
-                <!-- Les liens vers les polices Google Fonts doivent être dans le <head> du document principal,
-                     mais si vous les mettez ici, ils pourraient être chargés dynamiquement.
-                     Il est préférable de les avoir une fois dans le <head> global.
-                     Cependant, pour l'exercice, nous les laissons ici pour que le style soit auto-contenu. -->
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
@@ -319,11 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-        // La balise <body /> du document principal a déjà les styles de fond
-        // Il n'est pas nécessaire de les appliquer à nouveau ou de tenter de créer un nouveau body.
-        // Assurez-vous que le CSS global de votre page contient les styles pour `body`.
     }
-
     // Initial load: render the home page
     renderHomePage();
 });
