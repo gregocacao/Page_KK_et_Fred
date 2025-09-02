@@ -131,3 +131,10 @@ button:hover {
     font-size: 1.1em;
     color: #155724;
 }
+/* Styles for the home page image */
+.home-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
