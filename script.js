@@ -140,18 +140,188 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderFinalPage() {
         app.innerHTML = `
             <div class="container final-page" id="final-page">
-                <h1>Félicitations, brillants détectives !</h1>
-                <p>Vous avez relevé les défis avec brio et une intelligence remarquable !</p>
-                <p>Le chemin fut semé d'énigmes, mais votre persévérance et votre esprit d'équipe vous ont menés au trésor final.</p>
-                <div class="secret-text">
-                    <p>Le message secret est :</p>
-                    <p><strong>"Carole et Fred, votre amour est aussi grand que le ciel et aussi fort que l'océan. Nous sommes tellement heureux de partager ces moments avec vous. Que votre bonheur continue de s'épanouir jour après jour. Plein de bisous de Sonia et Grégory !"</strong></p>
+                <!-- Déplacez le contenu de style ici, ou idéalement dans un fichier CSS externe -->
+                <style>
+                    /* Styles pour le corps de la page */
+                    body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                        margin: 0;
+                        /* Fond simulant une table en bois sombre */
+                        background-color: #3d2b1f;
+                        background-image: linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1)), 
+                                          linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1));
+                        background-size: 60px 60px;
+                        background-position: 0 0, 30px 30px;
+                        padding: 2rem;
+                        box-sizing: border-box;
+                        font-family: 'Helvetica Neue', sans-serif;
+                        overflow: hidden;
+                    }
+
+                    /* Conteneur principal du parchemin */
+                    .parchment {
+                        position: relative;
+                        width: 100%;
+                        max-width: 700px;
+                        padding: 4rem 5rem;
+                        color: #3d2b1f; /* Couleur de texte marron foncé */
+                        
+                        /* Fond amélioré avec taches et texture */
+                        background: 
+                            radial-gradient(circle at 15% 20%, rgba(181, 152, 100, 0.15) 0%, transparent 30%),
+                            radial-gradient(circle at 85% 75%, rgba(181, 152, 100, 0.1) 0%, transparent 40%),
+                            #fdf5e6; /* Couleur de base du papier ancien */
+
+                        /* Ombre portée plus réaliste pour un effet de relief */
+                        box-shadow: 
+                            inset 0 0 20px rgba(0,0,0,0.2), /* Ombre intérieure pour la profondeur */
+                            0 0 1px 1px #a68b5a, /* Bordure dorée subtile */
+                            0 0 5px 2px #735e3a, /* Bordure plus sombre */
+                            0 15px 40px rgba(0,0,0,0.7); /* Ombre principale */
+
+                        border-radius: 2px;
+                    }
+
+                    /* Effet de bords brûlés/déchirés en haut et en bas */
+                    .parchment::before,
+                    .parchment::after {
+                        content: '';
+                        position: absolute;
+                        left: -10px;
+                        width: calc(100% + 20px);
+                        height: 45px;
+                        /* Gradient simulant des bords brûlés */
+                        background-image:
+                            radial-gradient(ellipse at 50% -60%, rgba(0,0,0,0.4) 15%, transparent 16%),
+                            radial-gradient(ellipse at 50% 160%, rgba(0,0,0,0.4) 15%, transparent 16%),
+                            linear-gradient(to right, #f4e9d3, #fdf5e6, #f4e9d3);
+                        background-repeat: repeat-x;
+                        background-size: 40px 40px, 40px 40px, 100% 100%;
+                        z-index: 2;
+                    }
+
+                    .parchment::before {
+                        top: -42px;
+                    }
+
+                    .parchment::after {
+                        bottom: -42px;
+                        transform: rotate(180deg);
+                    }
+
+
+                    /* Contenu textuel */
+                    .content {
+                        font-family: 'Marck Script', cursive; /* Police manuscrite importée */
+                        font-size: 1.7rem;
+                        line-height: 1.6;
+                        text-align: center;
+                        /* Ombre légère pour simuler l'encre */
+                        text-shadow: 1px 1px 2px rgba(61, 43, 31, 0.2);
+                    }
+                    
+                    /* Préserve les sauts de ligne du texte original */
+                    .main-text {
+                        white-space: pre-line;
+                        margin-bottom: 2rem;
+                    }
+
+                    /* Style pour la signature */
+                    .signature {
+                        text-align: right;
+                        margin-top: 2rem;
+                        font-size: 1.8rem;
+                    }
+
+                    /* Sceau de cire */
+                    .wax-seal {
+                        position: absolute;
+                        bottom: 25px;
+                        right: 40px;
+                        width: 75px;
+                        height: 75px;
+                        background: #b22222; /* Rouge brique */
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: #d24242;
+                        font-family: 'Marck Script', cursive;
+                        font-size: 3.5rem;
+                        text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+                        box-shadow:
+                            2px 2px 5px rgba(0,0,0,0.5), /* Ombre portée */
+                            inset 1px 1px 4px rgba(255,255,255,0.3), /* Reflet interne */
+                            inset -3px -3px 5px rgba(0,0,0,0.4); /* Ombre interne */
+                        transform: rotate(12deg);
+                        z-index: 3;
+                        border: 2px solid #8f1c1c;
+                    }
+                    .wax-seal::before {
+                         content: '';
+                         position: absolute;
+                         top: 5px; right: 5px; bottom: 5px; left: 5px;
+                         border: 2px solid rgba(0,0,0,0.1);
+                         border-radius: 50%;
+                    }
+
+                    /* Ajustements pour les petits écrans */
+                    @media (max-width: 600px) {
+                        body {
+                            padding: 1rem;
+                        }
+                        .parchment {
+                            padding: 4rem 2rem;
+                        }
+                        .content {
+                            font-size: 1.4rem;
+                        }
+                        .wax-seal {
+                            width: 60px;
+                            height: 60px;
+                            font-size: 2.5rem;
+                            bottom: 15px;
+                            right: 15px;
+                        }
+                    }
+                </style>
+                <!-- Les liens vers les polices Google Fonts doivent être dans le <head> du document principal,
+                     mais si vous les mettez ici, ils pourraient être chargés dynamiquement.
+                     Il est préférable de les avoir une fois dans le <head> global.
+                     Cependant, pour l'exercice, nous les laissons ici pour que le style soit auto-contenu. -->
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+
+                <div class="parchment">
+                    <div class="content">
+                        <p class="main-text">Félicitations d'être arrivé jusqu'ici !
+  
+  Pour la prochaine étape,
+  Rendez vous, comme il y a 10 ans, sur la place du jeu que vous connaissez certainement, entre 9h et 17h30.
+  
+  Suivez l'étroit chemin qui vous mènera jusqu'à la porte de derrière de ce lieux de culte.
+  Descendez quelques marches, puis un escalier monumental.
+  
+  Avant de franchir la grille, face au fleuve royal.
+  
+  Retournez vous !
+  
+  L'indice suivant est dans le schiste derrière les fougères.
+  
+  Bonne chance ...</p>
+                        <p class="signature">Marco</p>
+                    </div>
+                    <div class="wax-seal">M</div>
                 </div>
-                <p>Nous espérons que vous avez apprécié cette petite aventure !</p>
-                <p>Avec tout notre amour,</p>
-                <p>Sonia et Grégory</p>
             </div>
         `;
+        // La balise <body /> du document principal a déjà les styles de fond
+        // Il n'est pas nécessaire de les appliquer à nouveau ou de tenter de créer un nouveau body.
+        // Assurez-vous que le CSS global de votre page contient les styles pour `body`.
     }
 
     // Initial load: render the home page
