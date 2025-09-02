@@ -143,13 +143,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to render the Final Page
     function renderFinalPage() {
         app.innerHTML = `
-            <div class="container final-page" id="final-page">
-                <div class="image-container">
-                    <img src="parchemin.jpg" alt="Parchemin final">
-                </div>
+            <div class="container" id="final-container">
+                <h1>Félicitations !</h1>
+                <p>Vous avez résolu toutes les énigmes. Voici votre récompense :</p>
+                <img src="parchemin.jpg" alt="Parchemin final" class="cryptogram-image">
             </div>
         `;
-        // Les styles spécifiques pour cette page sont maintenant dans style.css
+        // Plus besoin de styles spécifiques, le style de .container et .cryptogram-image s'applique.
     }
 
     // Initial load: render the home page
