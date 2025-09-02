@@ -84,6 +84,13 @@ button:hover {
     margin-bottom: 25px;
 }
 
+/* --- NOUVELLE RÈGLE AJOUTÉE ICI --- */
+/* Supprime la bordure uniquement pour l'image de la page finale */
+#final-container .cryptogram-image {
+    border: none;
+}
+/* --- FIN DE L'AJOUT --- */
+
 .input-grid {
     display: flex;
     flex-wrap: wrap;
