@@ -64,7 +64,7 @@ button:hover {
 }
 
 /* Styles pour la section de décryptage */
-.cipher-challenge, .rebus-challenge { /* Appliquer aussi à rebus-challenge */
+.cipher-challenge, .rebus-challenge {
     margin-top: 30px;
 }
 
@@ -100,17 +100,20 @@ button:hover {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Supprimez les règles nth-child spécifiques ici:
-.input-grid input:nth-child(6) {
+/* Styles spécifiques pour les espacements de l'énigme 1 (CAROLE ET FRED FOREVER) */
+.cipher-letter-input:nth-child(6),
+.cipher-letter-input:nth-child(9),
+.cipher-letter-input:nth-child(14) {
     margin-right: 15px;
 }
-.input-grid input:nth-child(8) {
+
+
+/* Styles spécifiques pour les espacements de l'énigme 2 (MARC ANTOINE AMIEL) */
+.rebus-letter-input:nth-child(4),
+.rebus-letter-input:nth-child(11) {
     margin-right: 15px;
 }
-.input-grid input:nth-child(12) {
-    margin-right: 15px;
-}
-*/
+
 
 /* Styles pour la page finale */
 .final-page {
