@@ -64,7 +64,7 @@ button:hover {
 }
 
 /* Styles pour la section de décryptage */
-.cipher-challenge {
+.cipher-challenge, .rebus-challenge { /* Appliquer aussi à rebus-challenge */
     margin-top: 30px;
 }
 
@@ -100,17 +100,17 @@ button:hover {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Ajout d'un espacement plus grand pour les "mots" */
+/* Supprimez les règles nth-child spécifiques ici:
 .input-grid input:nth-child(6) {
-    margin-right: 15px; 
+    margin-right: 15px;
 }
 .input-grid input:nth-child(8) {
-    margin-right: 15px; 
+    margin-right: 15px;
 }
 .input-grid input:nth-child(12) {
-    margin-right: 15px; 
+    margin-right: 15px;
 }
-
+*/
 
 /* Styles pour la page finale */
 .final-page {
