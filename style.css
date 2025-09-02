@@ -7,6 +7,7 @@ body {
     margin: 0;
     background-color: #f4f4f4;
     color: #333;
+    overflow: hidden; /* Empêche le défilement par défaut */
 }
 
 .container {
@@ -18,6 +19,7 @@ body {
     max-width: 600px;
     width: 90%;
     margin: 20px auto;
+    box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur */
 }
 
 h1 {
@@ -117,23 +119,38 @@ button:hover {
 
 /* Styles pour la page finale */
 .final-page {
-    background-color: #e6ffe6;
-    border: 1px solid #c3e6cb;
+    background-color: transparent; /* Supprime l'arrière-plan vert */
+    border: none; /* Supprime la bordure verte */
+    box-shadow: none; /* Supprime l'ombre si non désirée sur cette page */
+    max-width: 100%; /* Permet au conteneur de s'étendre */
+    width: 100%; /* Occupe toute la largeur disponible */
+    height: 100vh; /* Occupe toute la hauteur de la vue */
+    margin: 0; /* Supprime les marges du conteneur */
+    padding: 0; /* Supprime le padding du conteneur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.secret-text {
-    background-color: #e9f7ef;
-    border: 1px solid #d4edda;
-    border-radius: 5px;
-    padding: 20px;
-    margin-top: 30px;
-    text-align: left;
+.final-page .image-container {
+    max-width: 100%;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Le conteneur d'image prend toute la largeur disponible */
+    height: 100%; /* Le conteneur d'image prend toute la hauteur disponible */
 }
 
-.secret-text p {
-    font-size: 1.1em;
-    color: #155724;
+.final-page .image-container img {
+    max-width: 100%; /* L'image prend 100% de la largeur disponible dans son conteneur */
+    max-height: 100vh; /* L'image ne dépasse pas la hauteur de la vue */
+    height: auto; /* Maintient le ratio de l'image */
+    width: auto; /* Maintient le ratio de l'image, sera limité par max-width */
+    display: block;
+    object-fit: contain; /* S'assure que l'image est entièrement visible sans être coupée */
 }
+
 /* Styles for the home page image */
 .home-image {
     max-width: 100%;
