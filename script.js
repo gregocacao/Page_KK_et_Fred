@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const decryptButton = document.getElementById('decrypt-button');
         const cipherFeedback = document.getElementById('cipher-feedback');
 
-        generateInputGrid(cipherInputGrid, numCipherLetters, 'cipher-letter-input'); // Pas de spaceIndices ici
+        generateInputGrid(cipherInputGrid, numCipherLetters, 'cipher-letter-input');
 
         decryptButton.addEventListener('click', () => {
             let userAnswer = '';
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const solveRebusButton = document.getElementById('solve-rebus-button');
         const rebusFeedback = document.getElementById('rebus-feedback');
 
-        generateInputGrid(rebusInputGrid, numRebusLetters, 'rebus-letter-input'); // Pas de spaceIndices ici
+        generateInputGrid(rebusInputGrid, numRebusLetters, 'rebus-letter-input');
 
         solveRebusButton.addEventListener('click', () => {
             let userAnswer = '';
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Generic function to generate input fields (simplifiée)
+    // Generic function to generate input fields
     function generateInputGrid(gridElement, numLetters, inputClass) {
         gridElement.innerHTML = '';
         for (let i = 0; i < numLetters; i++) {
@@ -132,21 +132,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-        document.querySelector(`.${inputClass}[data-index="0"]`).focus();
+        // Focus sur le premier input généré
+        const firstInput = document.querySelector(`.${inputClass}[data-index="0"]`);
+        if (firstInput) {
+            firstInput.focus();
+        }
     }
 
 
-// Function to render the Final Page
-function renderFinalPage() {
-    app.innerHTML = `
-        <div class="container final-page" id="final-page">
-            <div class="image-container">
-                <img src="parchemin.png" alt="Parchemin final">
+    // Function to render the Final Page
+    function renderFinalPage() {
+        app.innerHTML = `
+            <div class="container final-page" id="final-page">
+                <div class="image-container">
+                    <img src="parchemin.png" alt="Parchemin final">
+                </div>
             </div>
-        </div>
-    `;
-    // Les styles spécifiques pour cette page sont maintenant dans style.css
-}
+        `;
+        // Les styles spécifiques pour cette page sont maintenant dans style.css
+    }
+
     // Initial load: render the home page
     renderHomePage();
 });
