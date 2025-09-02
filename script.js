@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const app = document.getElementById('app');
 
-    const correctCipherAnswer = "CAROLEETFREDFOREVER"; 
-    const numCipherLetters = 19; 
+    const correctCipherAnswer = "CAROLEETFREDFOREVER";
+    const numCipherLetters = 19;
+
+    const correctRebusAnswer = "MARCANTOINEAMIEL"; // Correct answer for the rebus
+    const numRebusLetters = 16; // Number of letters in the rebus answer
 
     // Function to render the Home Page
     function renderHomePage() {
         app.innerHTML = `
             <div class="container" id="home-page">
                 <img src="fouras.jpg" alt="Fouras" class="home-image">
-                <p>Bonjour Carole et Fred. Sonia et Grégory ont deux nouvelles énigme pour vous !n nouveau défi vous attend !</p>
+                <p>Bonjour Carole et Fred. Sonia et Grégory ont deux nouvelles énigme pour vous ! Un nouveau défi vous attend !</p>
                 <button id="continue-button">Poursuivre</button>
             </div>
         `;
@@ -17,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('continue-button').addEventListener('click', renderCipherPage);
     }
 
-    // Function to render the Cipher Page
+    // Function to render the Cipher Page (Enigma 1)
     function renderCipherPage() {
         app.innerHTML = `
             <div class="container" id="cipher-container">
@@ -38,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const decryptButton = document.getElementById('decrypt-button');
         const cipherFeedback = document.getElementById('cipher-feedback');
 
-        generateCipherInputs(cipherInputGrid, numCipherLetters);
+        generateInputGrid(cipherInputGrid, numCipherLetters, 'cipher-letter-input'); // Use generic function
 
         decryptButton.addEventListener('click', () => {
             let userAnswer = '';
@@ -50,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (userAnswer === correctCipherAnswer) {
                 cipherFeedback.textContent = "Magnifique ! Vous avez déchiffré le message ! Vous avancez à la prochaine étape. Bisous, Sonia et Grégory";
                 cipherFeedback.className = "feedback success";
-                setTimeout(renderMarcoPage, 1500);
+                setTimeout(renderRebusPage, 1500); // Go to rebus page next
             } else {
                 cipherFeedback.textContent = "Ce n'est pas tout à fait ça. Continuez d'essayer ! ";
                 cipherFeedback.className = "feedback error";
@@ -58,21 +61,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to generate the cipher input fields
-    function generateCipherInputs(gridElement, numLetters) {
+    // Function to render the Rebus Page (Enigma 2)
+    function renderRebusPage() {
+        app.innerHTML = `
+            <div class="container" id="rebus-container">
+                <h1>Enigme n°2: Le Rébus de Marco !</h1>
+                <p>Marco a une nouvelle énigme pour vous. Démêlez ce rébus et trouvez le nom caché ! Entrez les <strong>${numRebusLetters} lettres</strong> ci-dessous.</p>
+                <div class="rebus-challenge">
+                    <img src="rebus.png" alt="Rébus" class="cryptogram-image">
+                    <div class="input-grid" id="rebus-input-grid">
+                        <!-- The input fields will be generated here -->
+                    </div>
+                    <button id="solve-rebus-button">Résoudre le rébus</button>
+                    <p id="rebus-feedback" class="feedback"></p>
+                </div>
+            </div>
+        `;
+
+        const rebusInputGrid = document.getElementById('rebus-input-grid');
+        const solveRebusButton = document.getElementById('solve-rebus-button');
+        const rebusFeedback = document.getElementById('rebus-feedback');
+
+        generateInputGrid(rebusInputGrid, numRebusLetters, 'rebus-letter-input'); // Use generic function
+
+        solveRebusButton.addEventListener('click', () => {
+            let userAnswer = '';
+            const inputs = document.querySelectorAll('.rebus-letter-input');
+            inputs.forEach(input => {
+                userAnswer += input.value.toUpperCase();
+            });
+
+            if (userAnswer === correctRebusAnswer) {
+                rebusFeedback.textContent = "Fantastique ! Vous avez résolu le rébus ! Passez à la dernière étape. Bisous, Sonia et Grégory.";
+                rebusFeedback.className = "feedback success";
+                setTimeout(renderFinalPage, 1500); // Go to final page
+            } else {
+                rebusFeedback.textContent = "Presque ! Réfléchissez bien aux images. ";
+                rebusFeedback.className = "feedback error";
+            }
+        });
+    }
+
+    // Generic function to generate input fields
+    function generateInputGrid(gridElement, numLetters, inputClass) {
         gridElement.innerHTML = '';
         for (let i = 0; i < numLetters; i++) {
             const input = document.createElement('input');
             input.type = 'text';
             input.maxLength = 1;
-            input.classList.add('cipher-letter-input');
+            input.classList.add(inputClass); // Use dynamic class
             input.dataset.index = i;
             gridElement.appendChild(input);
 
             input.addEventListener('input', (event) => {
                 event.target.value = event.target.value.toUpperCase();
                 if (event.target.value.length === 1) {
-                    const nextInput = document.querySelector(`.cipher-letter-input[data-index="${i + 1}"]`);
+                    const nextInput = document.querySelector(`.${inputClass}[data-index="${i + 1}"]`);
                     if (nextInput) {
                         nextInput.focus();
                     }
@@ -81,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             input.addEventListener('keydown', (event) => {
                 if (event.key === 'Backspace' && event.target.value.length === 0) {
-                    const prevInput = document.querySelector(`.cipher-letter-input[data-index="${i - 1}"]`);
+                    const prevInput = document.querySelector(`.${inputClass}[data-index="${i - 1}"]`);
                     if (prevInput) {
                         prevInput.focus();
                     }
@@ -89,21 +133,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         // Focus the first input after generation
-        document.querySelector('.cipher-letter-input[data-index="0"]').focus();
+        document.querySelector(`.${inputClass}[data-index="0"]`).focus();
     }
 
-    // Function to render the Marco Page
-    function renderMarcoPage() {
+
+    // Function to render the Final Page
+    function renderFinalPage() {
         app.innerHTML = `
-            <div class="container" id="marco-page">
-                <h1>Voici l'énigme suivante</h1>
-                <p>Bienvenue à cette nouvelle étape, chers Carole et Fred ! Vous avez brillamment déchiffré le premier message. Votre perspicacité est remarquable !</p>
-                <p>Pour cette énigme, Marco a préparé quelque chose de spécial. Il vous demande de bien observer l'image suivante. Ce n'est pas un simple visuel, mais un indice clé pour la suite de votre aventure.</p>
-                <p>Que voyez-vous ? Quelle émotion cela évoque-t-il ? Quel détail vous semble important ? Le message n'est pas écrit, il est caché dans la forme, la couleur et le contexte.</p>
-                <p>Une fois que vous pensez avoir compris l'indice de Marco, vous saurez où chercher la prochaine pièce du puzzle. N'oubliez pas, l'observation est votre meilleure alliée !</p>
-                <p>Bonne chance, et amusez-vous bien !</p>
-                <img src="enigme_marco.jpg" alt="Enigme de Marco" class="cryptogram-image">
-                <p>N'oubliez pas d'indiquer votre réponse sur le carnet fourni. Bisous, Sonia et Grégory.</p>
+            <div class="container final-page" id="final-page">
+                <h1>Félicitations, brillants détectives !</h1>
+                <p>Vous avez relevé les défis avec brio et une intelligence remarquable !</p>
+                <p>Le chemin fut semé d'énigmes, mais votre persévérance et votre esprit d'équipe vous ont menés au trésor final.</p>
+                <div class="secret-text">
+                    <p>Le message secret est :</p>
+                    <p><strong>"Carole et Fred, votre amour est aussi grand que le ciel et aussi fort que l'océan. Nous sommes tellement heureux de partager ces moments avec vous. Que votre bonheur continue de s'épanouir jour après jour. Plein de bisous de Sonia et Grégory !"</strong></p>
+                </div>
+                <p>Nous espérons que vous avez apprécié cette petite aventure !</p>
+                <p>Avec tout notre amour,</p>
+                <p>Sonia et Grégory</p>
             </div>
         `;
     }
