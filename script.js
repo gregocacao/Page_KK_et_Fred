@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         app.innerHTML = `
             <div class="container final-page" id="final-page">
                 <div class="image-container">
-                    <img src="parchemin.png" alt="Parchemin final">
+                    <img src="parchemin.jpg" alt="Parchemin final">
                 </div>
             </div>
         `;
