@@ -3,9 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const correctCipherAnswer = "CAROLEETFREDFOREVER";
     const numCipherLetters = 19;
+    // Définition des indices pour les espacements de l'énigme 1 (CAROLE ET FRED FOREVER)
+    const cipherSpaceIndices = [6, 9, 14]; // Après les lettres 'CAROLE', 'ET', 'FRED'
 
     const correctRebusAnswer = "MARCANTOINEAMIEL"; // Correct answer for the rebus
     const numRebusLetters = 16; // Number of letters in the rebus answer
+    // Définition des indices pour les espacements de l'énigme 2 (MARC ANTOINE AMIEL)
+    const rebusSpaceIndices = [4, 11]; // Après les lettres 'MARC', 'ANTOINE'
 
     // Function to render the Home Page
     function renderHomePage() {
@@ -41,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const decryptButton = document.getElementById('decrypt-button');
         const cipherFeedback = document.getElementById('cipher-feedback');
 
-        generateInputGrid(cipherInputGrid, numCipherLetters, 'cipher-letter-input'); // Use generic function
+        generateInputGrid(cipherInputGrid, numCipherLetters, 'cipher-letter-input', cipherSpaceIndices); // Pass space indices
 
         decryptButton.addEventListener('click', () => {
             let userAnswer = '';
@@ -82,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const solveRebusButton = document.getElementById('solve-rebus-button');
         const rebusFeedback = document.getElementById('rebus-feedback');
 
-        generateInputGrid(rebusInputGrid, numRebusLetters, 'rebus-letter-input'); // Use generic function
+        generateInputGrid(rebusInputGrid, numRebusLetters, 'rebus-letter-input', rebusSpaceIndices); // Pass space indices
 
         solveRebusButton.addEventListener('click', () => {
             let userAnswer = '';
@@ -103,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Generic function to generate input fields
-    function generateInputGrid(gridElement, numLetters, inputClass) {
+    function generateInputGrid(gridElement, numLetters, inputClass, spaceIndices = []) {
         gridElement.innerHTML = '';
         for (let i = 0; i < numLetters; i++) {
             const input = document.createElement('input');
@@ -111,6 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
             input.maxLength = 1;
             input.classList.add(inputClass); // Use dynamic class
             input.dataset.index = i;
+
+            // Add margin if the current index is in the spaceIndices array
+            if (spaceIndices.includes(i + 1)) { // i+1 because spaceIndices are 1-based (after X letters)
+                input.style.marginRight = '15px';
+            }
+
             gridElement.appendChild(input);
 
             input.addEventListener('input', (event) => {
