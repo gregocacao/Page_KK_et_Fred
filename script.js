@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         app.innerHTML = `
             <div class="container" id="home-page">
                 <img src="fouras.jpg" alt="Fouras" class="home-image">
-                <p>Bonjour Carole et Fred. Sonia et Grégory ont deux nouvelles énigme pour vous ! Un nouveau défi vous attend !</p>
-                <button id="continue-button">Poursuivre</button>
+                <p>Bonjour Carole et Fred. Sonia et Grégory ont deux nouvelles énigme pour vous !</p>
+                <button id="continue-button">Enigme n°1</button>
             </div>
         `;
 
