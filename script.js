@@ -140,35 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderFinalPage() {
     app.innerHTML = `
         <div class="container final-page" id="final-page">
-            <style>
-                body {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    min-height: 100vh;
-                    margin: 0;
-                    background-color: white;
-                    overflow: hidden; /* Empêche le défilement */
-                }
-                .image-container {
-                    max-width: 100%; /* S'assure que l'image ne dépasse pas la largeur du conteneur parent */
-                    max-height: 100vh; /* S'assure que l'image ne dépasse pas la hauteur de la vue */
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .image-container img {
-                    max-width: 100%; /* L'image prend 100% de la largeur disponible dans son conteneur */
-                    max-height: 100vh; /* L'image prend 100% de la hauteur disponible dans la vue */
-                    height: auto; /* Maintient le ratio de l'image */
-                    display: block; /* Supprime l'espace sous l'image */
-                }
-            </style>
             <div class="image-container">
                 <img src="parchemin.png" alt="Parchemin final">
             </div>
         </div>
     `;
+    // Les styles spécifiques pour cette page sont maintenant dans style.css
 }
     // Initial load: render the home page
     renderHomePage();
